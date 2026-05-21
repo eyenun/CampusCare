@@ -40,44 +40,34 @@
 
         </div>
 
-        <form class="space-y-6">
-
+        <form method="POST" action="{{ route('login') }}" class="space-y-6">
+            @csrf
             <div>
-
                 <label class="block mb-2 font-medium text-slate-700">
                     Email
                 </label>
-
                 <input
-                    type="email"
-                    placeholder="Masukkan email"
-                    class="w-full border border-slate-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
+                type="email"
+                name="email"
+                placeholder="Masukkan email"
+                class="w-full border border-slate-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+    </div>
+    <div>
+        <label class="block mb-2 font-medium text-slate-700">
+            Password
+        </label>
+        <input
+        type="password"
+        name="password"
+        placeholder="Masukkan password"
+        class="w-full border border-slate-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
 
-            </div>
-
-            <div>
-
-                <label class="block mb-2 font-medium text-slate-700">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    placeholder="Masukkan password"
-                    class="w-full border border-slate-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-
-            </div>
-
-            <button
-                class="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-4 rounded-xl font-semibold shadow-lg">
-
-                Login
-
-            </button>
-
-        </form>
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-4 rounded-xl font-semibold shadow-lg">
+        Login
+    </button>
+</form>
 
     </div>
 

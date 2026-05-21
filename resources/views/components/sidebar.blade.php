@@ -35,7 +35,7 @@
         </a>
 
         {{-- Login --}}
-        <a href="/login"
+        <a href="auth.login"
            class="flex items-center px-5 py-4 rounded-xl transition duration-300
            {{ request()->is('login') ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
 
