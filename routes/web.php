@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\KomentarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,12 +30,25 @@ Route::middleware(['auth', 'role:admin'])->group(function ()
 
 
  
- Route::middleware(['auth', 'role:mahasiswa'])->group(function ()
- {
-    Route::get('/laporan', function () {
-        return view('laporan.index');
-    });
- });
+Route::middleware(['auth', 'role:mahasiswa'])->group(function ()
+{
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+
+    Route::get('/laporan/create', [LaporanController::class, 'create']) ->name('laporan.create');
+
+    Route::post('/laporan', [LaporanController::class, 'store'])->name('laporan.store');
+
+    Route::delete('/laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
+
+    Route::get('laporan/{id}', [LaporanController::class, 'show'])->name('laporan.show');
+
+    Route::get('/laporan/{id}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
+
+    Route::put('/laporan/{id}', [LaporanController::class, 'update'])->name('laporan.update');
+
+    Route::post('/laporan/{id}/komentar', [KomentarController::class, 'store'])
+    ->name('laporan.komentar.store');
+});
 
 
 

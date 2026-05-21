@@ -39,23 +39,53 @@
                     <th class="text-left p-5">Fasilitas</th>
                     <th class="text-left p-5">Lokasi</th>
                     <th class="text-left p-5">Status</th>
+                    <th class="text-left p-5">Aksi</th>
 
                 </tr>
 
             </thead>
 
             <tbody>
-
+                @foreach($laporans as $laporan)
                 <tr class="border-t">
-
-                    <td class="p-5">1</td>
-                    <td class="p-5">Proyektor Rusak</td>
-                    <td class="p-5">Lab Komputer</td>
-                    <td class="p-5 text-red-500 font-semibold">
-                        Pending
+                    <td class="p-5">
+                        {{ $loop->iteration }}
+                    </td>
+                    
+                    <td class="p-5">
+                        {{ $laporan->judul }}
                     </td>
 
+                    <td class="p-5">
+                        {{ $laporan->lokasi }}
+                    </td>
+
+                    <td class="p-5 font-semibold">
+                        {{ $laporan->status }}
+                    </td>
+                    
+                    <td class="p-5">
+                        {{-- EDIT --}}
+                        <a href="{{ route('laporan.edit', $laporan->id) }}"class="text-blue-600">
+                            Edit
+                        </a>
+
+                        {{-- DETAIL --}}
+                        <a href="{{ route('laporan.show', $laporan->id) }}"class="text-green-600 hover:underline">
+                            Detail
+                        </a>
+
+                        {{-- HAPUS --}}
+                        <form action="/laporan/{{ $laporan->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                                Hapus
+                            </button>
+                        </form>
+                    </td>
                 </tr>
+                @endforeach
 
             </tbody>
 

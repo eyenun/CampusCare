@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+
+<a href="/laporan"
+   class="inline-block mb-4 text-blue-600 hover:underline">
+    ← Kembali ke daftar laporan
+</a>
+
+@if(session('success'))
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+
 <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
     
     <!-- Sisi Kiri: Detail Laporan -->
@@ -26,7 +39,7 @@
             <div class="grid grid-cols-2 gap-4 text-sm bg-gray-50 p-4 rounded-lg">
                 <div>
                     <span class="block text-xs text-gray-400">Pelapor:</span>
-                    <span class="font-medium text-gray-700">{{ $laporan->mahasiswa->name }}</span>
+                    <span class="font-medium text-gray-700">{{ $laporan->user->name }}</span>
                 </div>
                 <div>
                     <span class="block text-xs text-gray-400">Lokasi Tempat:</span>
@@ -34,7 +47,8 @@
                 </div>
                 <div>
                     <span class="block text-xs text-gray-400">Kategori Fasilitas:</span>
-                    <span class="font-medium text-gray-700">{{ $laporan->kategori->nama_kategori }}</span>
+                    <span class="font-medium text-gray-700">{{ $laporan->kategori->nama_kategori ?? '-' }}
+                    </span>
                 </div>
                 <div>
                     <span class="block text-xs text-gray-400">Teknisi Pengampu:</span>
@@ -95,12 +109,24 @@
 
         <!-- Kolom input Tambah Komentar (Untuk Admin/Teknisi) -->
         <div class="border-t border-gray-100 pt-4">
-            <form action="/laporan/{{ $laporan->id }}/komentar" method="POST" class="space-y-2">
+            <form action="{{ route('laporan.komentar.store', $laporan->id) }}" method="POST" class="space-y-2">
                 @csrf
                 <textarea name="komentar" rows="2" placeholder="Tulis catatan progress / komentar baru..." class="w-full border border-gray-300 rounded-lg p-2.5 text-xs outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg text-xs font-semibold hover:bg-blue-700 transition">
-                    Kirim Update
-                </button>
+                
+                <div class="flex gap-2">
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-blue-700">
+                        Kirim Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+            <a href="/laporan"
+                class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-xs font-semibold">
+                Kembali
+            </a>
+        </div>
             </form>
         </div>
     </div>

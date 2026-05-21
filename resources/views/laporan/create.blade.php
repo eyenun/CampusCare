@@ -13,6 +13,7 @@
         <!-- Judul Kerusakan -->
         <div>
             <label for="judul" class="block text-sm font-semibold text-gray-700 mb-2">Judul Laporan</label>
+            
             <input type="text" name="judul" id="judul" value="{{ old('judul') }}" 
                 placeholder="Contoh: LCD Ruang IT-301 Tidak Menyala" 
                 class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
