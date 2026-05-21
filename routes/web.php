@@ -26,6 +26,10 @@ Route::middleware(['auth', 'role:admin'])->group(function ()
     });
  });
 
+ Route::get('/profile', function () {
+    return 'Profile Page';
+})->name('profile.edit');
+
 
 
 require __DIR__.'/auth.php';

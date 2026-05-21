@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -30,45 +29,8 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
     </body>
 </html>
-=======
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusCare</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-slate-100">
-
-<div class="flex min-h-screen">
-
-    {{-- Sidebar --}}
-    @include('components.sidebar')
-
-    {{-- Main Content --}}
-    <div class="flex-1">
-
-        {{-- Navbar --}}
-        @include('components.navbar')
-
-        {{-- Content --}}
-        <main class="p-8">
-
-            @yield('content')
-
-        </main>
-
-    </div>
-
-</div>
-
-</body>
-</html>
->>>>>>> 1b3c415bc463075f2b32986037924370c25be7c8
