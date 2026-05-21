@@ -4,11 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return redirect('/login');
 });
 
+
+
 Route::get('/dashboard', function () {
-    return 'Dashboard';
+    if(auth()->user()->role == 'admin') {
+        return redirect('/admin/dashboard');
+    }
+    return redirect('/laporan');
+
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -19,12 +25,16 @@ Route::middleware(['auth', 'role:admin'])->group(function ()
     });
  });
 
+
+ 
  Route::middleware(['auth', 'role:mahasiswa'])->group(function ()
  {
     Route::get('/laporan', function () {
-        return ('Halaman Mahasiswa');
+        return view('laporan.index');
     });
  });
+
+
 
  Route::get('/profile', function () {
     return 'Profile Page';
