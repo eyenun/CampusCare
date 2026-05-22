@@ -74,50 +74,26 @@
         </h2>
 
         <div class="space-y-4">
-
-            <div class="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
-
-                <div>
-
-                    <h3 class="font-semibold text-slate-700">
-                        Proyektor Rusak
-                    </h3>
-
-                    <p class="text-sm text-slate-500">
-                        Lab Komputer
-                    </p>
-
-                </div>
-
-                <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-lg text-sm font-medium">
-                    Pending
-                </span>
-
+            @foreach($laporanTerbaru as $laporan)
+            <div class="flex justify-between items-center p-4 bg-slate-50 rounded-xl"> <div>
+                <h3 class="font-semibold text-slate-700">
+                    {{ $laporan->judul }}
+                </h3>
+                <p class="text-sm text-slate-500">
+                    {{ $laporan->lokasi }}
+                </p>
             </div>
-
-            <div class="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
-
-                <div>
-
-                    <h3 class="font-semibold text-slate-700">
-                        AC Tidak Dingin
-                    </h3>
-
-                    <p class="text-sm text-slate-500">
-                        Ruang Kuliah A2
-                    </p>
-
-                </div>
-
-                <span class="bg-green-100 text-green-600 px-4 py-2 rounded-lg text-sm font-medium">
-                    Diproses
-                </span>
-
-            </div>
-
+            <span class="px-4 py-2 rounded-lg text-sm font-medium @if($laporan->status == 'pending') bg-yellow-100 text-yellow-600
+            @elseif($laporan->status == 'diproses') bg-blue-100 text-blue-600
+            @elseif($laporan->status == 'selesai') bg-green-100 text-green-600
+            @else bg-red-100 text-red-600
+            @endif">
+                {{ $laporan->status }}
+            </span>
         </div>
-
+        @endforeach
     </div>
+</div>
 
     {{-- Quick Info --}}
     <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-100">
